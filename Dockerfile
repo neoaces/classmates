@@ -1,23 +1,20 @@
-FROM arm64v8/ubuntu
+FROM golang:latest AS build-stage
 
 # APT Update
-RUN apt-get update
-# RUN apt-get install libcpprest-dev --no-install-recommends -y
-# RUN add-apt-repository ppa:pistache+team/unstable
-RUN apt-get install -y build-essential cmake libcpprest-dev --no-install-recommends
+# RUN apt-get update
+# RUN apt-get install -y build-essential cmake libcpprest-dev --no-install-recommends
 
 #
 # BUILDING
 #
 WORKDIR /build
 COPY backend .
-RUN cmake .
-RUN cmake --build .
-CMD ["./cmserver"]
+RUN CGO_ENABLED=0 GOOS=linux go build -o /cmserver
 
-#
-# WORKDIR
-#
-# WORKDIR /app
-# COPY /build/cmserver .
-
+# RUNNING
+FROM gcr.io/distroless/base-debian11 AS build-release-stage
+WORKDIR /app
+COPY --from=build-stage /cmserver /cmserver
+EXPOSE 8080
+USER nonroot:nonroot
+ENTRYPOINT ["/cmserver"]
