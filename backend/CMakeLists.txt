@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project("cmserver")
+
 find_package(cpprestsdk REQUIRED)
 
 add_executable(cmserver
