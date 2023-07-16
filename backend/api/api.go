@@ -11,5 +11,6 @@ func SetupRouter() *gin.Engine {
 	r.GET("/clients", GetClients)
 	r.GET("/client", GetClientById)
 	r.POST("/client", CreateClient)
+
 	return r
 }
