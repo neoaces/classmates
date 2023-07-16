@@ -1,14 +1,10 @@
 FROM golang:latest AS build-stage
 
-# APT Update
-# RUN apt-get update
-# RUN apt-get install -y build-essential cmake libcpprest-dev --no-install-recommends
-
 #
 # BUILDING
 #
 WORKDIR /build
-COPY backend .
+COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -o /cmserver
 
 # RUNNING
