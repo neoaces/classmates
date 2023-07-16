@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"github.com/classmates/db"
 	"github.com/classmates/types"
 	"github.com/gin-gonic/gin"
@@ -36,6 +37,7 @@ func GetClients(c *gin.Context) {
 	var g_clients []types.Client
 
 	if err := db.Limit(10).Find(&g_clients).Error; err != nil {
+		fmt.Println(err)
 		c.AbortWithStatus(http.StatusNotFound)
 	}
 
@@ -57,7 +59,7 @@ func CreateClient(c *gin.Context) {
 		VersionCode: c.Query("version_code"),
 	}
 
-	if err := db.Create(&client); err != nil {
+	if err := db.Create(&client).Error; err != nil {
 		c.AbortWithStatus(http.StatusBadRequest)
 	}
 
