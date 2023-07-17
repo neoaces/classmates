@@ -2,8 +2,14 @@ build/
 .vscode/
 .cache/
 .DS_Store
+<<<<<<< HEAD
 backend/.idea/
 backend/.idea/misc.xml
 backend/.idea/workspace.xml
 .next/
 client/node_modules/
+=======
+*/.env
+.idea/
+backend/.env
+>>>>>>> 03aa90e26075f13fdabd95af90da8b64b4fc4816
