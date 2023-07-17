@@ -2,3 +2,6 @@ build/
 .vscode/
 .cache/
 .DS_Store
+*/.env
+.idea/
+backend/.env
