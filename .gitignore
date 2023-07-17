@@ -2,3 +2,8 @@ build/
 .vscode/
 .cache/
 .DS_Store
+backend/.idea/
+backend/.idea/misc.xml
+backend/.idea/workspace.xml
+.next/
+client/node_modules/
